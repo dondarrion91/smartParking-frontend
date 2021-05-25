@@ -1,0 +1,39 @@
+{
+    "name": "smartparking-frontend",
+    "version": "1.0.0",
+    "description": "Interfaz de usuario de smartParking",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack",
+        "dev": "webpack serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dondarrion91/smartParking-frontend.git"
+    },
+    "author": "Hydra group",
+    "license": "ISC",
+    "private": true,
+    "bugs": {
+        "url": "https://github.com/dondarrion91/smartParking-frontend/issues"
+    },
+    "homepage": "https://github.com/dondarrion91/smartParking-frontend#readme",
+    "devDependencies": {
+        "@babel/core": "^7.14.3",
+        "@babel/preset-env": "^7.14.2",
+        "babel-loader": "^8.2.2",
+        "css-loader": "^5.2.5",
+        "html-loader": "^2.1.2",
+        "html-webpack-plugin": "^5.3.1",
+        "sass": "^1.34.0",
+        "sass-loader": "^11.1.1",
+        "style-loader": "^2.0.0",
+        "svg-inline-loader": "^0.8.2",
+        "webpack": "^5.37.1",
+        "webpack-cli": "^4.7.0",
+        "webpack-dev-server": "^3.11.2"
+    },
+    "dependencies": {
+        "bootstrap": "^5.0.1"
+    }
+}
