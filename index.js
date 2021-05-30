@@ -1,7 +1,7 @@
-import { router } from "./routes/index.routes";
+import { router } from "./src/routes/index.routes";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/style.scss";
+import "./src/styles/style.scss";
 
 const init = () => {
     router(window.location.hash);
