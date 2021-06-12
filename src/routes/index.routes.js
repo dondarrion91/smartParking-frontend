@@ -30,9 +30,9 @@ const router = async (route) => {
         case "#/register": {
             return content.appendChild(pages.register());
         }
-        case "#/test": {
+        case "#/parking": {
             if (JSON.parse(localStorage.getItem("logged"))) {
-                return content.appendChild(pages.test());
+                return content.appendChild(pages.parking());
             }
 
             window.location.hash = "#/login";
