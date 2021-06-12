@@ -33,7 +33,7 @@ export default () => {
                 })
                 .then((data) => {
                     localStorage.setItem("logged", "true");
-                    window.location.hash = "#/test";
+                    window.location.hash = "#/parking";
                 });
         }
     }
