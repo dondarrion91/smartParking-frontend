@@ -1,4 +1,4 @@
-import view from "../views/home.html";
+import view from "../views/test.html";
 
 export default () => {
     const divElement = document.createElement("div");
