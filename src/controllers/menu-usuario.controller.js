@@ -20,12 +20,31 @@ export default () => {
         })
         .then((data) => {
             const rol = data.admin ? "admin" : "usuario";
-
+            console.log(data);
             divElement.querySelector("#usuario").innerHTML = data.usuario;
             divElement.querySelector("#full-name").innerHTML =
                 data.nombreCompleto;
             divElement.querySelector("#dni").innerHTML = data.dni;
             divElement.querySelector("#rol").innerHTML = rol;
+
+            fetch("http://localhost:3000/api/v1/vehiculos/" + data.vehiculo, {
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((vehiculo) => {
+                    divElement.querySelector("#patente").innerHTML =
+                        vehiculo.patente;
+                    divElement.querySelector("#marca").innerHTML =
+                        vehiculo.marca;
+                    divElement.querySelector("#modelo").innerHTML =
+                        vehiculo.modelo;
+                });
 
             data.reservas.forEach((reserva) => {
                 fetch(
