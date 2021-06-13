@@ -32,7 +32,14 @@ export default () => {
                     return res.json();
                 })
                 .then((data) => {
-                    localStorage.setItem("logged", "true");
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify({
+                            id: data.id,
+                            user: data.usuario,
+                            auth: true,
+                        })
+                    );
                     window.location.hash = "#/parking";
                 });
         }

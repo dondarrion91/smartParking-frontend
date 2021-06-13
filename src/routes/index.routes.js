@@ -12,7 +12,8 @@ fetch("http://localhost:3000/api/v1/test-cookie", {
     })
     .then((data) => {
         if (data !== true) {
-            localStorage.setItem("logged", "false");
+            localStorage.setItem("user", "");
+            window.location.hash = "#/login";
         }
     });
 
@@ -33,6 +34,13 @@ const router = async (route) => {
         case "#/parking": {
             if (JSON.parse(localStorage.getItem("logged"))) {
                 return content.appendChild(pages.parking());
+            }
+
+            window.location.hash = "#/login";
+        }
+        case "#/nueva-reserva": {
+            if (JSON.parse(localStorage.getItem("user"))) {
+                return content.appendChild(pages.nuevaReserva());
             }
 
             window.location.hash = "#/login";
