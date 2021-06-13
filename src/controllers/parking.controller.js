@@ -5,6 +5,12 @@ export default () => {
     const divElement = document.createElement("div");
     divElement.innerHTML = view;
 
+    divElement
+        .querySelector("#mis-reservas")
+        .addEventListener("click", function () {
+            window.location.hash = "#/menu-usuario";
+        });
+
     fetch("http://localhost:3000/api/v1/lugares", {
         headers: {
             Accept: "application/json, text/plain, */*",
