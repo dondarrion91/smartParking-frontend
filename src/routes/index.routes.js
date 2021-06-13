@@ -22,17 +22,21 @@ const router = async (route) => {
     content.innerHTML = "";
 
     switch (route) {
-        case "#/": {
-            return content.appendChild(pages.home());
-        }
         case "#/login": {
             return content.appendChild(pages.login());
         }
         case "#/register": {
             return content.appendChild(pages.register());
         }
+        case "#/menu-usuario": {
+            if (JSON.parse(localStorage.getItem("user"))) {
+                return content.appendChild(pages.menuUsuario());
+            }
+
+            window.location.hash = "#/login";
+        }
         case "#/parking": {
-            if (JSON.parse(localStorage.getItem("logged"))) {
+            if (JSON.parse(localStorage.getItem("user"))) {
                 return content.appendChild(pages.parking());
             }
 
