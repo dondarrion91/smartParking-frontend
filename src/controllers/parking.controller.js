@@ -37,9 +37,7 @@ export default () => {
 
                 divElement.querySelector(".row").innerHTML += `
                 <div class="col-2">
-                    <div class="lugar ${
-                        isDisponible ? "pointer" : ""
-                    } ${element.estado.toLowerCase()}">
+                    <div class="lugar pointer ${element.estado.toLowerCase()}">
                         <span>${index + 1}</span>          
                         <span id="_id" style="display: none">${
                             element._id
@@ -52,6 +50,7 @@ export default () => {
             });
 
             const disponibles = divElement.querySelectorAll(".disponible");
+            const ocupados = divElement.querySelectorAll(".ocupado");
 
             for (let i = 0; i < disponibles.length; i++) {
                 disponibles[i].addEventListener("click", function (event) {
@@ -68,6 +67,12 @@ export default () => {
                         })
                     );
                     window.location.hash = "#/nueva-reserva";
+                });
+            }
+
+            for (let i = 0; i < ocupados.length; i++) {
+                ocupados[i].addEventListener("click", function (event) {
+                    alert("Lugar no disponible, por favor elija otro");
                 });
             }
         });

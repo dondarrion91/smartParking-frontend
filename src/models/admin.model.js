@@ -80,6 +80,11 @@ class Admin extends Usuarios {
         usuariosStrategy.strategy = adminStrategy;
         usuariosStrategy.crearReserva(reserva);
     }
+
+    agregarReserva(reserva) {
+        usuariosStrategy.strategy = adminStrategy;
+        usuariosStrategy.agregarReserva(reserva);
+    }
 }
 
 export default {

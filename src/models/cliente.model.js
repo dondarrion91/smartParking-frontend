@@ -36,10 +36,15 @@ class ClienteStrategy {
                         return res.json();
                     })
                     .then((userData) => {
-                        console.log(userData);
-                        userData.reservas.push({
-                            reserva: dataReservas._id,
-                        });
+                        if (dataReservas._id) {
+                            userData.reservas.push({
+                                reserva: dataReservas._id,
+                            });
+                        } else {
+                            alert("Error a crear la reserva");
+                            window.location.hash = "/parking";
+                            return;
+                        }
 
                         fetch(
                             "http://localhost:3000/api/v1/usuarios/" +
@@ -81,6 +86,11 @@ class Cliente extends Usuarios {
     crearReserva(reserva) {
         usuariosStrategy.strategy = clienteStrategy;
         usuariosStrategy.crearReserva(reserva);
+    }
+
+    pagarReserva(reserva) {
+        usuariosStrategy.strategy = clienteStrategy;
+        usuariosStrategy.pagarReserva(reserva);
     }
 }
 

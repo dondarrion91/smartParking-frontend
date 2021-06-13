@@ -20,8 +20,6 @@ export default () => {
                 divElement.querySelector("#modelo").value
             );
 
-            console.log(nuevoVehiculo);
-
             return fetch("http://localhost:3000/api/v1/vehiculos", {
                 method: "POST",
                 headers: {

@@ -20,7 +20,6 @@ export default () => {
         })
         .then((data) => {
             const rol = data.admin ? "admin" : "usuario";
-            console.log(data);
             divElement.querySelector("#usuario").innerHTML = data.usuario;
             divElement.querySelector("#full-name").innerHTML =
                 data.nombreCompleto;
@@ -49,7 +48,7 @@ export default () => {
             data.reservas.forEach((reserva) => {
                 fetch(
                     "http://localhost:3000/api/v1/lugares/" +
-                        JSON.parse(localStorage.getItem("lugar")).id,
+                        reserva.reserva.lugar,
                     {
                         headers: {
                             Accept: "application/json, text/plain, */*",
