@@ -99,7 +99,23 @@ export default () => {
                                     Monto final: ${reserva.reserva.montoFinal}
                                 </p>
 
-                                <button class="btn btn-success">Pagar reserva</button>
+                                <p class="card-text">
+                                    Metodo de pago: ${
+                                        reserva.reserva.metodoDePago
+                                    }
+                                </p>
+
+                                <button class="btn btn-success">${
+                                    data.admin
+                                        ? "Cobrar Reserva"
+                                        : "Pagar Reserva"
+                                }</button>
+
+                                ${
+                                    data.admin
+                                        ? "<button class='btn btn-danger'>Borrar reserva</button>"
+                                        : ""
+                                }  
                             </div>
                         </div>
                     </div>

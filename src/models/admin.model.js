@@ -1,6 +1,7 @@
-const Usuarios = require("../models/usuarios.model");
+import Usuarios from "../models/usuarios.model";
 const UsuariosStrategy = require("../interfaces/UsersStrategy.interface");
-class ClienteStrategy {
+
+class AdminStrategy {
     crearReserva(reserva) {
         fetch("http://localhost:3000/api/v1/reservas", {
             method: "POST",
@@ -22,8 +23,7 @@ class ClienteStrategy {
             })
             .then((dataReservas) => {
                 fetch(
-                    "http://localhost:3000/api/v1/usuarios/" +
-                        JSON.parse(localStorage.getItem("user")).id,
+                    "http://localhost:3000/api/v1/usuarios/" + reserva.cliente,
                     {
                         headers: {
                             Accept: "application/json, text/plain, */*",
@@ -36,14 +36,13 @@ class ClienteStrategy {
                         return res.json();
                     })
                     .then((userData) => {
-                        console.log(userData);
                         userData.reservas.push({
                             reserva: dataReservas._id,
                         });
 
                         fetch(
                             "http://localhost:3000/api/v1/usuarios/" +
-                                JSON.parse(localStorage.getItem("user")).id,
+                                reserva.cliente,
                             {
                                 method: "PUT",
                                 headers: {
@@ -70,18 +69,19 @@ class ClienteStrategy {
 }
 
 const usuariosStrategy = new UsuariosStrategy();
-const clienteStrategy = new ClienteStrategy();
+const adminStrategy = new AdminStrategy();
 
-class Cliente extends Usuarios {
-    constructor(reservas, idUsuario, nombreCompleto, usuario, password, dni) {
-        super(reservas, idUsuario, nombreCompleto, usuario, password, dni);
-        this.admin = false;
+class Admin extends Usuarios {
+    constructor(reservas, idUsuario, nombreCompleto, usuario, dni, admin) {
+        super(reservas, idUsuario, nombreCompleto, usuario, dni, admin);
     }
 
     crearReserva(reserva) {
-        usuariosStrategy.strategy = clienteStrategy;
+        usuariosStrategy.strategy = adminStrategy;
         usuariosStrategy.crearReserva(reserva);
     }
 }
 
-module.exports = Cliente;
+export default {
+    Admin,
+};

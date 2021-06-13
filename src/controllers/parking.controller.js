@@ -55,7 +55,9 @@ export default () => {
 
             for (let i = 0; i < disponibles.length; i++) {
                 disponibles[i].addEventListener("click", function (event) {
-                    console.log(event.target.querySelector("#_id"));
+                    if (!event.target.querySelector("#_id")) {
+                        return;
+                    }
                     localStorage.setItem(
                         "lugar",
                         JSON.stringify({
