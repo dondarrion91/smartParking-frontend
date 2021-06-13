@@ -1,5 +1,6 @@
 class Lugar {
-    constructor(estado, tarifa) {
+    constructor(id, estado, tarifa) {
+        this.id = id;
         this.estado = estado;
         this.tarifa = tarifa;
     }

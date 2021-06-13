@@ -1,0 +1,65 @@
+<div id="login">
+    <div class="container">
+        <h1 class="text-center mt-5">Reservar lugar</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form class="mt-5">
+                    <div class="form-group mt-3">
+                        <label for="horaIngreso">Hora de ingreso:</label>
+                        <input
+                            type="datetime-local"
+                            class="form-control"
+                            id="horaIngreso"
+                            name="horaIngreso"
+                            aria-describedby="horaIngreso"
+                            placeholder="Hora de ingreso"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="horaSalida">Hora de salida:</label>
+                        <input
+                            type="datetime-local"
+                            class="form-control"
+                            id="horaSalida"
+                            name="horaSalida"
+                            aria-describedby="horaSalida"
+                            placeholder="Ingresar hora de salida"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="monto">Monto de reserva:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="monto"
+                            name="monto"
+                            aria-describedby="monto"
+                            placeholder="Ingresar monto"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="metodoPago">Metodo de pago:</label>
+                        <select
+                            class="form-select"
+                            name="metodoPago"
+                            id="metodoPago"
+                        >
+                            <option value="EFECTIVO">efectivo</option>
+                            <option value="MERCADOPAGO">MERCADOPAGO</option>
+                        </select>
+                    </div>
+
+                    <button id="crear-reserva" class="btn btn-primary mt-3">
+                        Crear Reserva
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
