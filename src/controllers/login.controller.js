@@ -37,6 +37,7 @@ export default () => {
                         JSON.stringify({
                             id: data.id,
                             user: data.usuario,
+                            admin: data.admin,
                             auth: true,
                         })
                     );

@@ -1,5 +1,7 @@
 import view from "../views/register.html";
 import "../styles/register.scss";
+import Cliente from "../models/cliente.model";
+import Vehiculos from "../models/vehiculos.model";
 
 export default () => {
     const divElement = document.createElement("div");
@@ -7,21 +9,18 @@ export default () => {
 
     class registerController {
         constructor() {
-            this.usuario = "";
-            this.password = "";
-            this.checkPassword = "";
-            this.nombreCompleto = "";
-            this.patente = "";
-            this.marca = "";
-            this.modelo = "";
-            this.dni = "";
             this.url = "http://localhost:3000/api/v1" + "/register";
         }
 
         cargarVehiculo() {
-            this.patente = divElement.querySelector("#patente").value;
-            this.marca = divElement.querySelector("#marca").value;
-            this.modelo = divElement.querySelector("#modelo").value;
+            const nuevoVehiculo = new Vehiculos(
+                undefined,
+                divElement.querySelector("#patente").value,
+                divElement.querySelector("#marca").value,
+                divElement.querySelector("#modelo").value
+            );
+
+            console.log(nuevoVehiculo);
 
             return fetch("http://localhost:3000/api/v1/vehiculos", {
                 method: "POST",
@@ -30,25 +29,29 @@ export default () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    patente: this.patente,
-                    marca: this.marca,
-                    modelo: this.modelo,
+                    patente: nuevoVehiculo.patente,
+                    marca: nuevoVehiculo.marca,
+                    modelo: nuevoVehiculo.modelo,
                 }),
             }).then((res) => {
-                console.log(res);
                 return res.json();
             });
         }
 
         register() {
-            this.usuario = divElement.querySelector("#user").value;
-            this.password = divElement.querySelector("#password").value;
-            this.checkPassword =
-                divElement.querySelector("#check-password").value;
-            this.nombreCompleto = divElement.querySelector("#fullname").value;
-            this.dni = divElement.querySelector("#dni").value;
+            const nuevoCliente = new Cliente(
+                undefined,
+                undefined,
+                divElement.querySelector("#fullname").value,
+                divElement.querySelector("#user").value,
+                divElement.querySelector("#password").value,
+                divElement.querySelector("#dni").value
+            );
 
-            if (this.password !== this.checkPassword) {
+            if (
+                divElement.querySelector("#password").value !==
+                divElement.querySelector("#check-password").value
+            ) {
                 divElement
                     .querySelector("button")
                     .insertAdjacentHTML(
@@ -65,19 +68,19 @@ export default () => {
                         },
                         credentials: "include",
                         body: JSON.stringify({
-                            usuario: this.usuario,
-                            password: this.password,
-                            checkPassword: this.checkPassword,
-                            nombreCompleto: this.nombreCompleto,
-                            dni: this.dni,
+                            usuario: nuevoCliente.usuario,
+                            password: nuevoCliente.password,
+                            checkPassword: nuevoCliente.checkPassword,
+                            nombreCompleto: nuevoCliente.nombreCompleto,
+                            dni: nuevoCliente.dni,
                             vehiculo: vehiculo._id,
+                            admin: nuevoCliente.admin,
                         }),
                     })
                         .then((res) => {
                             return res.json();
                         })
                         .then((data) => {
-                            console.log(data);
                             divElement.innerHTML =
                                 "<p class='text-success text-center h2'>Usuario creado con exito</p><br><a href='#/login'>Iniciar Sesion</a>";
                         });
