@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Usuarios from "../models/usuarios.model";
 const UsuariosStrategy = require("../interfaces/UsersStrategy.interface");
 
@@ -65,6 +66,30 @@ class AdminStrategy {
                         });
                     });
             });
+=======
+const { Usuarios } = require("../models/usuarios.model");
+const UsuariosStrategy = require("../interfaces/UsersStrategy.interface");
+import ESTADO from "../enums/estados.enum";
+import request from "../utils/request.class";
+
+class AdminStrategy {
+    pagarReserva(lugarId, reservaId) {
+        request
+            .put("lugares", lugarId, {
+                estado: ESTADO.DISPONIBLE,
+            })
+            .then((res) => res.json())
+            .then((message) => {
+                request
+                    .delete("reservas", reservaId)
+                    .then((res) => res.json())
+                    .then((message) => {
+                        window.location.reload();
+                    })
+                    .catch((error) => alert(error));
+            })
+            .catch((error) => alert(error));
+>>>>>>> master
     }
 }
 
@@ -85,8 +110,19 @@ class Admin extends Usuarios {
         usuariosStrategy.strategy = adminStrategy;
         usuariosStrategy.agregarReserva(reserva);
     }
+<<<<<<< HEAD
 }
 
 export default {
     Admin,
 };
+=======
+
+    pagarReserva(lugarId, reservaId) {
+        usuariosStrategy.strategy = adminStrategy;
+        usuariosStrategy.pagarReserva(lugarId, reservaId);
+    }
+}
+
+export { Admin };
+>>>>>>> master

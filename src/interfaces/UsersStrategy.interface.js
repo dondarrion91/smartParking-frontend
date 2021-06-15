@@ -19,8 +19,13 @@ class UsersStrategy {
         return this._strategy.calcularMonto(context);
     }
 
+<<<<<<< HEAD
     pagarReserva(context) {
         return this._strategy.calcularMonto(context);
+=======
+    pagarReserva(context1, context2) {
+        return this._strategy.pagarReserva(context1, context2);
+>>>>>>> master
     }
 
     agregarReserva(context) {

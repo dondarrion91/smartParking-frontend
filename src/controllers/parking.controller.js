@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import Lugar from "../models/lugar.model";
 import view from "../views/parking.html";
+=======
+import view from "../views/parking.html";
+import request from "../utils/request.class";
+>>>>>>> master
 
 export default () => {
     const divElement = document.createElement("div");
@@ -11,6 +16,7 @@ export default () => {
             window.location.hash = "#/menu-usuario";
         });
 
+<<<<<<< HEAD
     fetch("http://localhost:3000/api/v1/lugares", {
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -18,6 +24,10 @@ export default () => {
         },
         credentials: "include",
     })
+=======
+    request
+        .getAll("lugares")
+>>>>>>> master
         .then((res) => {
             return res.json();
         })
@@ -27,6 +37,7 @@ export default () => {
                 return;
             }
             data.forEach((element, index) => {
+<<<<<<< HEAD
                 const lugar = new Lugar(
                     element._id,
                     element.estado,
@@ -35,6 +46,8 @@ export default () => {
 
                 const isDisponible = element.estado === "DISPONIBLE";
 
+=======
+>>>>>>> master
                 divElement.querySelector(".row").innerHTML += `
                 <div class="col-2">
                     <div class="lugar pointer ${element.estado.toLowerCase()}">
