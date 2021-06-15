@@ -1,26 +1,9 @@
 import view from "../views/register.html";
 import "../styles/register.scss";
-<<<<<<< HEAD
-import Cliente from "../models/cliente.model";
-import Vehiculos from "../models/vehiculos.model";
-=======
-import { Cliente } from "../models/cliente.model";
-import Vehiculos from "../models/vehiculos.model";
-import request from "../utils/request.class";
->>>>>>> master
-
 export default () => {
     const divElement = document.createElement("div");
     divElement.innerHTML = view;
-
     class registerController {
-<<<<<<< HEAD
-        constructor() {
-            this.url = "http://localhost:3000/api/v1" + "/register";
-        }
-
-=======
->>>>>>> master
         cargarVehiculo() {
             const nuevoVehiculo = new Vehiculos(
                 undefined,
@@ -29,22 +12,6 @@ export default () => {
                 divElement.querySelector("#modelo").value
             );
 
-<<<<<<< HEAD
-            return fetch("http://localhost:3000/api/v1/vehiculos", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json, text/plain, */*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    patente: nuevoVehiculo.patente,
-                    marca: nuevoVehiculo.marca,
-                    modelo: nuevoVehiculo.modelo,
-                }),
-            }).then((res) => {
-                return res.json();
-            });
-=======
             return request
                 .post("vehiculos", {
                     patente: nuevoVehiculo.patente,
@@ -54,7 +21,6 @@ export default () => {
                 .then((res) => {
                     return res.json();
                 });
->>>>>>> master
         }
 
         register() {
@@ -79,23 +45,12 @@ export default () => {
                     );
             } else {
                 this.cargarVehiculo().then((vehiculo) => {
-<<<<<<< HEAD
-                    fetch(this.url, {
-                        method: "POST",
-                        headers: {
-                            Accept: "application/json, text/plain, */*",
-                            "Content-Type": "application/json",
-                        },
-                        credentials: "include",
-                        body: JSON.stringify({
-=======
                     if (vehiculo.message === "Internal Server Error") {
                         alert("Patente repetida");
                         return;
                     }
                     request
                         .post("register", {
->>>>>>> master
                             usuario: nuevoCliente.usuario,
                             password: nuevoCliente.password,
                             checkPassword: nuevoCliente.checkPassword,
@@ -103,12 +58,7 @@ export default () => {
                             dni: nuevoCliente.dni,
                             vehiculo: vehiculo._id,
                             admin: nuevoCliente.admin,
-<<<<<<< HEAD
-                        }),
-                    })
-=======
                         })
->>>>>>> master
                         .then((res) => {
                             return res.json();
                         })
