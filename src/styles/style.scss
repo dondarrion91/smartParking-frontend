@@ -1,0 +1,52 @@
+@import "variables.scss";
+@import "login.scss";
+@import "parking.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+p,
+label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #fff;
+}
+
+html,
+body {
+    background: $background;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.disponible {
+    background-color: #adff2f;
+}
+
+.ocupado {
+    background-color: #ffa500;
+}
+
+.pagado {
+    background-color: #ffff00;
+}
+
+.reservado {
+    background-color: #87ceeb;
+}
+
+.penalizado {
+    background-color: rgb(230, 59, 59);
+}
+
+.mis-reservas {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}

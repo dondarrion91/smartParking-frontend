@@ -1,0 +1,9 @@
+const ESTADOS = {
+    DISPONIBLE: "DISPONIBLE",
+    OCUPADO: "OCUPADO",
+    PAGADO: "PAGADO",
+    RESERVADO: "RESERVADO",
+    PENALIZADO: "PENALIZADO",
+};
+
+module.exports = ESTADOS;
