@@ -1,5 +1,5 @@
-import Lugar from "../models/lugar.model";
 import view from "../views/parking.html";
+import request from "../utils/request.class";
 
 export default () => {
     const divElement = document.createElement("div");
@@ -11,13 +11,8 @@ export default () => {
             window.location.hash = "#/menu-usuario";
         });
 
-    fetch("http://localhost:3000/api/v1/lugares", {
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-        },
-        credentials: "include",
-    })
+    request
+        .getAll("lugares")
         .then((res) => {
             return res.json();
         })
@@ -27,19 +22,9 @@ export default () => {
                 return;
             }
             data.forEach((element, index) => {
-                const lugar = new Lugar(
-                    element._id,
-                    element.estado,
-                    element.tarifa
-                );
-
-                const isDisponible = element.estado === "DISPONIBLE";
-
                 divElement.querySelector(".row").innerHTML += `
                 <div class="col-2">
-                    <div class="lugar ${
-                        isDisponible ? "pointer" : ""
-                    } ${element.estado.toLowerCase()}">
+                    <div class="lugar pointer ${element.estado.toLowerCase()}">
                         <span>${index + 1}</span>          
                         <span id="_id" style="display: none">${
                             element._id
@@ -52,6 +37,7 @@ export default () => {
             });
 
             const disponibles = divElement.querySelectorAll(".disponible");
+            const ocupados = divElement.querySelectorAll(".ocupado");
 
             for (let i = 0; i < disponibles.length; i++) {
                 disponibles[i].addEventListener("click", function (event) {
@@ -68,6 +54,12 @@ export default () => {
                         })
                     );
                     window.location.hash = "#/nueva-reserva";
+                });
+            }
+
+            for (let i = 0; i < ocupados.length; i++) {
+                ocupados[i].addEventListener("click", function (event) {
+                    alert("Lugar no disponible, por favor elija otro");
                 });
             }
         });

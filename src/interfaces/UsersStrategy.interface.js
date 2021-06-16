@@ -18,6 +18,14 @@ class UsersStrategy {
     calcularMonto(context) {
         return this._strategy.calcularMonto(context);
     }
+
+    pagarReserva(context1, context2) {
+        return this._strategy.pagarReserva(context1, context2);
+    }
+
+    agregarReserva(context) {
+        return this._strategy.agregarReserva(context);
+    }
 }
 
 module.exports = UsersStrategy;

@@ -1,17 +1,9 @@
 import view from "../views/register.html";
 import "../styles/register.scss";
-import Cliente from "../models/cliente.model";
-import Vehiculos from "../models/vehiculos.model";
-
 export default () => {
     const divElement = document.createElement("div");
     divElement.innerHTML = view;
-
     class registerController {
-        constructor() {
-            this.url = "http://localhost:3000/api/v1" + "/register";
-        }
-
         cargarVehiculo() {
             const nuevoVehiculo = new Vehiculos(
                 undefined,
@@ -20,22 +12,15 @@ export default () => {
                 divElement.querySelector("#modelo").value
             );
 
-            console.log(nuevoVehiculo);
-
-            return fetch("http://localhost:3000/api/v1/vehiculos", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json, text/plain, */*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
+            return request
+                .post("vehiculos", {
                     patente: nuevoVehiculo.patente,
                     marca: nuevoVehiculo.marca,
                     modelo: nuevoVehiculo.modelo,
-                }),
-            }).then((res) => {
-                return res.json();
-            });
+                })
+                .then((res) => {
+                    return res.json();
+                });
         }
 
         register() {
@@ -60,14 +45,12 @@ export default () => {
                     );
             } else {
                 this.cargarVehiculo().then((vehiculo) => {
-                    fetch(this.url, {
-                        method: "POST",
-                        headers: {
-                            Accept: "application/json, text/plain, */*",
-                            "Content-Type": "application/json",
-                        },
-                        credentials: "include",
-                        body: JSON.stringify({
+                    if (vehiculo.message === "Internal Server Error") {
+                        alert("Patente repetida");
+                        return;
+                    }
+                    request
+                        .post("register", {
                             usuario: nuevoCliente.usuario,
                             password: nuevoCliente.password,
                             checkPassword: nuevoCliente.checkPassword,
@@ -75,8 +58,7 @@ export default () => {
                             dni: nuevoCliente.dni,
                             vehiculo: vehiculo._id,
                             admin: nuevoCliente.admin,
-                        }),
-                    })
+                        })
                         .then((res) => {
                             return res.json();
                         })

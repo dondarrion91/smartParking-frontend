@@ -1,5 +1,6 @@
 import view from "../views/login.html";
 import "../styles/login.scss";
+import request from "../utils/request.class";
 
 export default () => {
     const divElement = document.createElement("div");
@@ -9,25 +10,17 @@ export default () => {
         constructor() {
             this.usuario = "";
             this.password = "";
-            this.url = "http://localhost:3000/api/v1" + "/login";
         }
 
         login() {
             this.usuario = divElement.querySelector("#user").value;
             this.password = divElement.querySelector("#password").value;
 
-            fetch(this.url, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json, text/plain, */*",
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify({
+            request
+                .post("login", {
                     usuario: this.usuario,
                     password: this.password,
-                }),
-            })
+                })
                 .then((res) => {
                     return res.json();
                 })
