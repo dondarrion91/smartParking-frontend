@@ -1,6 +1,6 @@
 import { pages } from "../controllers/index";
 
-fetch("http://localhost:3000/api/v1/test-cookie", {
+fetch(process.env.API_URL + "test-cookie", {
     headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",
