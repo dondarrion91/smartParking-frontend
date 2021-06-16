@@ -19,4 +19,15 @@
             margin-top: 10px;
         }
     }
+
+    @media screen and (max-width: 570px) {
+        .lugar {
+            height: 90px;
+
+            p, .tarifa {
+                display: none;
+            }
+        }                
+
+    }
 }

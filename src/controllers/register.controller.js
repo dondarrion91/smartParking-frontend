@@ -1,5 +1,9 @@
 import view from "../views/register.html";
 import "../styles/register.scss";
+import { Cliente } from "../models/cliente.model";
+import Vehiculos from "../models/vehiculos.model";
+import request from "../utils/request.class";
+
 export default () => {
     const divElement = document.createElement("div");
     divElement.innerHTML = view;
@@ -73,12 +77,10 @@ export default () => {
 
     const register = new registerController();
 
-    divElement
-        .querySelector("button")
-        .addEventListener("click", function (event) {
-            event.preventDefault();
-            register.register();
-        });
+    divElement.querySelector("#register-form").addEventListener("submit", function (event) {                    
+        event.preventDefault();
+        register.register();
+    });;            
 
     return divElement;
 };
