@@ -102,7 +102,7 @@ export default () => {
                                             }
                                         </p>
         
-                                        <button class="btn btn-success" id='${
+                                        <button class="btn btn-success" ${lugar.estado === "DISPONIBLE" ? "style='display:none;'" : ""} id='${
                                             lugar._id
                                         }'>${
                                     dataUsuario.admin
