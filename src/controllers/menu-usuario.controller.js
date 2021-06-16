@@ -102,7 +102,7 @@ export default () => {
                                             }
                                         </p>
         
-                                        <button class="btn btn-success" ${lugar.estado === "DISPONIBLE" ? "style='display:none;'" : ""} id='${
+                                        <button class="btn btn-success" ${lugar.estado === "DISPONIBLE" || "PAGADO" ? "style='display:none;'" : ""} id='${
                                             lugar._id
                                         }'>${
                                     dataUsuario.admin
@@ -112,7 +112,7 @@ export default () => {
         
                                         ${
                                             dataUsuario.admin
-                                                ? `<button ${lugar.estado === "DISPONIBLE" ? "style='display:none;'" : ""} class='btn btn-danger'>Borrar reserva</button>`
+                                                ? `<button ${lugar.estado === "DISPONIBLE" || "PAGADO" ? "style='display:none;'" : ""} class='btn btn-danger'>Borrar reserva</button>`
                                                 : ""
                                         }  
                                     </div>
