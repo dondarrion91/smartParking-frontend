@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
 
 
 console.log(path.join(__dirname, "dist"));
@@ -20,10 +19,6 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-        }),
-        new webpack.EnvironmentPlugin({
-            NODE_ENV: 'development',
-            API_URL: 'http://localhost:3000/api/v1/'
         })
     ],
     module: {
