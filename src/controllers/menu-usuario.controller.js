@@ -112,7 +112,7 @@ export default () => {
         
                                         ${
                                             dataUsuario.admin
-                                                ? "<button class='btn btn-danger'>Borrar reserva</button>"
+                                                ? `<button ${lugar.estado === "DISPONIBLE" ? "style='display:none;'" : ""} class='btn btn-danger'>Borrar reserva</button>`
                                                 : ""
                                         }  
                                     </div>
