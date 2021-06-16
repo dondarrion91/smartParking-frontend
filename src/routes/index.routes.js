@@ -1,6 +1,6 @@
 import { pages } from "../controllers/index";
 
-fetch(process.env.API_URL + "test-cookie", {
+fetch("https://smartparkingunc.herokuapp.com/api/v1/" + "test-cookie", {
     headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 class Request {
     constructor() {
-        this.url = process.env.API_URL;
+        this.url = "https://smartparkingunc.herokuapp.com/api/v1/";
     }
 
     getAll(model) {
