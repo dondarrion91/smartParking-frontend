@@ -26,6 +26,10 @@ class UsersStrategy {
     agregarReserva(context) {
         return this._strategy.agregarReserva(context);
     }
+
+    borrarReserva(context) {
+        return this._strategy.borrarReserva(context);
+    }
 }
 
 module.exports = UsersStrategy;

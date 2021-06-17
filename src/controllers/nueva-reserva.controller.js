@@ -17,6 +17,10 @@ export default () => {
         })
         .then((users) => {
             users.forEach((user) => {
+                if (user.admin) {
+                    return;
+                }
+
                 divElement.querySelector("#usuario").innerHTML += `
                                 <option value="${user._id}">${user.usuario}</option>
                             `;
@@ -44,7 +48,7 @@ export default () => {
             } else {
                 usuario = new Usuarios();
                 userId = JSON.parse(localStorage.getItem("user")).id;
-            }
+            }            
 
             const nuevaReserva = new Reservas(
                 JSON.parse(localStorage.getItem("lugar")).id,
@@ -52,7 +56,7 @@ export default () => {
                 divElement.querySelector("#horaSalida").value,
                 userId,
                 JSON.parse(localStorage.getItem("lugar")).tarifa,
-                divElement.querySelector("#monto").value
+                "100"
             );
 
             nuevaReserva.calcularMonto(nuevaReserva);

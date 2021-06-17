@@ -10,7 +10,7 @@ class Observer {
     }
 
     actualizar() {
-        this._observables.forEach((observable) => {
+        this._observables.forEach((observable) => {            
             request
                 .put(
                     observable.model,

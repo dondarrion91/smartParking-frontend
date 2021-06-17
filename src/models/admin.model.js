@@ -21,6 +21,14 @@ class AdminStrategy {
             })
             .catch((error) => alert(error));
     }
+
+    borrarReserva(reservaId) {
+        return request.delete("reservas", reservaId)
+            .then(res => res.json())
+            .then(message => {
+                window.location.reload();
+            })
+    }
 }
 
 const usuariosStrategy = new UsuariosStrategy();
@@ -44,6 +52,11 @@ class Admin extends Usuarios {
     pagarReserva(lugarId, reservaId) {
         usuariosStrategy.strategy = adminStrategy;
         usuariosStrategy.pagarReserva(lugarId, reservaId);
+    }
+
+    borrarReserva(reservaId) {
+        usuariosStrategy.strategy = adminStrategy;
+        usuariosStrategy.borrarReserva(reservaId);
     }
 }
 

@@ -29,7 +29,7 @@ export default () => {
                         <span id="_id" style="display: none">${
                             element._id
                         }</span>              
-                        <p class="tarifa">Tarifa: ${element.tarifa}</p>
+                        <p class="tarifa">Tarifa: $ ${element.tarifa}</p>
                         <p class="estado">${element.estado}</p>
                     </div>
                 </div>
@@ -48,9 +48,7 @@ export default () => {
                         "lugar",
                         JSON.stringify({
                             id: event.target.querySelector("#_id").innerHTML,
-                            tarifa: event.target
-                                .querySelector(".tarifa")
-                                .innerHTML.split(" ")[1],
+                            tarifa: "100",
                         })
                     );
                     window.location.hash = "#/nueva-reserva";

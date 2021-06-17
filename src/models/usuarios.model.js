@@ -22,7 +22,7 @@ class Usuarios {
     crearReserva(reserva, userId) {
         request
             .post("reservas", reserva)
-            .then((res) => {
+            .then((res) => {                
                 if (res.status !== 200) {
                     alert("Error a crear la reserva");
                     window.location.hash = "/#/parking";
@@ -31,7 +31,7 @@ class Usuarios {
                     return res.json();
                 }
             })
-            .then((dataReservas) => {
+            .then((dataReservas) => {                
                 request
                     .getOne("usuarios", userId)
                     .then((res) => {

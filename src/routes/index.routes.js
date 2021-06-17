@@ -1,6 +1,9 @@
 import { pages } from "../controllers/index";
 
-fetch("https://smartparkingunc.herokuapp.com/api/v1/" + "test-cookie", {
+const url = "http://localhost:3000/api/v1/";
+// const url = "https://smartparkingunc.herokuapp.com/api/v1/";
+
+fetch(url + "test-cookie", {
     headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 const UsuariosStrategy = require("../interfaces/UsersStrategy.interface");
 
 class ReservaStrategy {
-    calcularMonto(reserva) {
+    calcularMonto(reserva) {        
         const horaIngreso = new Date(reserva.horaIngreso);
         const horaSalida = new Date(reserva.horaSalida);
 
