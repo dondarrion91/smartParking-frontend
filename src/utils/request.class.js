@@ -1,7 +1,7 @@
 class Request {
     constructor() {
-        // this.url = "https://smartparkingunc.herokuapp.com/api/v1/";
-        this.url = "http://localhost:3000/api/v1/";
+        this.url = "https://smartparkingunc.herokuapp.com/api/v1/";
+        // this.url = "http://localhost:3000/api/v1/";
     }
 
     getAll(model) {
