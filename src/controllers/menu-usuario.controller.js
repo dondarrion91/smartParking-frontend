@@ -37,7 +37,7 @@ export default () => {
                         observer.actualizar();   
                     }
                 };
-                                
+
                 if (new Date() > new Date(horaDeSalidaEl.innerText) && lugarEstadoEl.innerText.toLowerCase() !== "pagado") {                    
                     if (!lugarEstadoEl.innerText.toLowerCase() === "penalizado" ) {
                         observer.suscribe({
@@ -174,7 +174,7 @@ export default () => {
                                             dataUsuario.admin
                                                 ? `<button ${lugar.estado === "DISPONIBLE" || lugar.estado === "PAGADO" ? "style='display:none;'" : ""} id='${
                                                     reserva.reserva._id
-                                                }' class='btn btn-danger'>Borrar reserva</button>`
+                                                }' data-lugar-id="${lugar._id}" class='btn btn-danger'>Borrar reserva</button>`
                                                 : ""
                                         }  
                                     </div>
@@ -213,7 +213,10 @@ export default () => {
                                             "click",
                                             function (event) {                                                                                            
                                                 const admin = new Admin();
-                                                admin.borrarReserva(event.target.id);                                                
+
+                                                console.log(event.target.dataset.lugarId)
+                                                
+                                                admin.borrarReserva(event.target.id, event.target.dataset.lugarId);                                                
                                             }
                                         );
                                     });

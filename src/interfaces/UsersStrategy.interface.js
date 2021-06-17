@@ -27,8 +27,8 @@ class UsersStrategy {
         return this._strategy.agregarReserva(context);
     }
 
-    borrarReserva(context) {
-        return this._strategy.borrarReserva(context);
+    borrarReserva(context1, context2) {
+        return this._strategy.borrarReserva(context1, context2);
     }
 }
 

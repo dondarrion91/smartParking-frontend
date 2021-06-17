@@ -22,11 +22,17 @@ class AdminStrategy {
             .catch((error) => alert(error));
     }
 
-    borrarReserva(reservaId) {
+    borrarReserva(reservaId, lugarId) {        
         return request.delete("reservas", reservaId)
             .then(res => res.json())
             .then(message => {
-                window.location.reload();
+                request.put("lugares", lugarId, {
+                    estado: "DISPONIBLE"
+                })
+                    .then(res => {
+                        console.log(res)
+                        return res.json()
+                    })                                  
             })
     }
 }
@@ -54,9 +60,9 @@ class Admin extends Usuarios {
         usuariosStrategy.pagarReserva(lugarId, reservaId);
     }
 
-    borrarReserva(reservaId) {
+    borrarReserva(reservaId, lugarId) {
         usuariosStrategy.strategy = adminStrategy;
-        usuariosStrategy.borrarReserva(reservaId);
+        usuariosStrategy.borrarReserva(reservaId, lugarId);
     }
 }
 
