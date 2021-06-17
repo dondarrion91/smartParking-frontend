@@ -20,23 +20,37 @@ export default () => {
             const horaDeSalidaEl = divElement.querySelector("#hora-salida-" + i);
             const lugarEstadoEl = divElement.querySelector("#lugar-estado-" + i);
             const reservaIdEl = divElement.querySelector("#reserva-" + i);
-
-            if (lugarEstadoEl.innerText.toLowerCase() === "ocupado") {
-                return;
-            }
-
+        
             if (horaDeSalidaEl) {
-                if (new Date() < new Date(horaDeSalidaEl.innerText) && new Date() > new Date(horaDeIngresoEl.innerText) ) {
-                    observer.suscribe({
-                        body: {
-                            lugar: reservaIdEl.innerText
-                        },
-                        context: "lugar",
-                        model: "lugares",
-                        data: { estado: "OCUPADO" },
-                    });
+                if (new Date() < new Date(horaDeSalidaEl.innerText) && new Date() > new Date(horaDeIngresoEl.innerText) ) {                    
+                    if (!lugarEstadoEl.innerText.toLowerCase() === "ocupado" ) {
+                        
+                        observer.suscribe({
+                            body: {
+                                lugar: reservaIdEl.innerText
+                            },
+                            context: "lugar",
+                            model: "lugares",
+                            data: { estado: "OCUPADO" },
+                        });
 
-                    observer.actualizar();
+                        observer.actualizar();   
+                    }
+                };
+                                
+                if (new Date() > new Date(horaDeSalidaEl.innerText) && lugarEstadoEl.innerText.toLowerCase() !== "pagado") {                    
+                    if (!lugarEstadoEl.innerText.toLowerCase() === "penalizado" ) {
+                        observer.suscribe({
+                            body: {
+                                lugar: reservaIdEl.innerText
+                            },
+                            context: "lugar",
+                            model: "lugares",
+                            data: { estado: "PENALIZADO" },
+                        });
+
+                        observer.actualizar();
+                    }
                 };
             }
         }         
